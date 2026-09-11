@@ -1,0 +1,100 @@
+# Every pull request into main or development is checked before a human looks
+# at it. Nothing here deploys — this job's only power is to say no.
+#
+# Modelled on the product repo's .github/workflows/pr.yml. The differences are
+# that this repository is the marketing site alone (no API job) and that it has
+# a lockfile check the product repo learned to need the hard way — see below.
+name: PR checks
+
+on:
+  pull_request:
+    branches: [main, development]
+
+permissions:
+  contents: read
+
+concurrency:
+  # A second push to the same PR cancels the first. Without this, a branch
+  # pushed three times in a minute runs three full builds and the slowest one
+  # reports last, which is how a red build gets reported as green.
+  group: pr-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web:
+    name: Web — typecheck, lint, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # Node 24, matching what the site is developed on and what the
+          # product's containers run. A Next build is sensitive to the major
+          # version and "it built on my machine" is not a deployment strategy.
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: The lockfile must have been generated on Linux
+        # npm only resolves wasm32-wasi packages on a platform that can use
+        # them. A package-lock.json generated on a Mac is therefore MISSING the
+        # `@emnapi/*` entries that `@tailwindcss/oxide-wasm32-wasi` demands
+        # here, and the `npm ci` below refuses to install it — in CI and in a
+        # Docker build alike. This happened in the product repo and cost an
+        # afternoon, because npm's own error does not mention the platform at
+        # all; it just says the lock is out of sync with package.json, which
+        # sends you off editing dependencies that are perfectly fine.
+        #
+        # A Linux-generated lockfile is a superset — it installs cleanly on
+        # macOS too — so this is a rule with no trade-off attached. Regenerate
+        # with, from the repo root:
+        #
+        #   docker run --rm -v "$PWD":/w -w /w node:24 \
+        #     bash -c 'rm -f package-lock.json && npm install --package-lock-only --ignore-scripts'
+        #
+        # Do NOT resolve a red `npm ci` by switching to `npm install`. That
+        # hides real lockfile drift, which is the one thing a lockfile is for.
+        run: |
+          set -euo pipefail
+
+          if ! grep -q '"node_modules/@tailwindcss/oxide-wasm32-wasi"' package-lock.json; then
+            echo "::notice::No wasm32-wasi Tailwind binary in the lockfile — nothing to check."
+            exit 0
+          fi
+
+          missing=""
+          for pkg in @emnapi/core @emnapi/runtime @emnapi/wasi-threads @napi-rs/wasm-runtime @tybys/wasm-util; do
+            grep -q "\"node_modules/$pkg\"" package-lock.json || missing="$missing $pkg"
+          done
+
+          if [ -n "$missing" ]; then
+            echo "::error::package-lock.json was generated on macOS. Missing on Linux:$missing"
+            echo "Regenerate it in a Linux container and commit the result:"
+            echo "  docker run --rm -v \"\$PWD\":/w -w /w node:24 \\"
+            echo "    bash -c 'rm -f package-lock.json && npm install --package-lock-only --ignore-scripts'"
+            echo "See README.md → 'The lockfile must be generated on Linux'."
+            exit 1
+          fi
+
+          echo "::notice::Lockfile carries the @emnapi/* entries Linux needs."
+
+      - name: Install
+        # `npm ci`, not `npm install` — it installs exactly the lockfile and
+        # fails loudly on drift, which is the point of committing one.
+        run: npm ci --no-audit --no-fund
+
+      - name: Typecheck
+        run: npx tsc --noEmit -p tsconfig.json
+
+      - name: Lint
+        # Deliberately a separate step from the build: Next 16 no longer runs
+        # ESLint during `next build`, so a green build says nothing about lint.
+        # `src` and not a bare `eslint`, so that this is exactly the command
+        # CONTRIBUTING.md tells people to run before opening the PR.
+        run: npx eslint src
+
+      - name: Production build
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: '1'

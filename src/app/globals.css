@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+/*
+  WomSakhi — the website.
+
+  The palette is the product's, not a new one. A woman who reads the site and
+  then opens the app should not feel she has changed companies: `--brand` here
+  is `--ux-brand-600` there, and the pink is the same pink. Everything else is
+  built around them.
+*/
+@theme {
+  --color-brand-50:  #f8f3fd;
+  --color-brand-100: #f0e5fe;
+  --color-brand-200: #e0cbfc;
+  --color-brand-300: #c9a8f7;
+  --color-brand-400: #a98bf5;
+  --color-brand-500: #8f6ae8;
+  --color-brand-600: #7648b3;
+  --color-brand-700: #5b32a6;
+  --color-brand-800: #4a2895;
+  --color-brand-900: #2c1a5c;
+  --color-brand-950: #1a0f38;
+
+  --color-pink-brand: #e160a4;
+  --color-pink-deep:  #ba4484;
+  --color-gold:       #f5b544;
+
+  /* Ink and ground. The neutrals carry a violet bias rather than being grey —
+     a pure grey beside this much purple reads as dirty. */
+  --color-ink:       #14102a;
+  --color-ink-2:     #3d3660;
+  --color-muted:     #6b6490;
+  --color-canvas:    #faf8ff;
+  --color-surface:   #ffffff;
+  --color-line:      #ece7f7;
+
+  --font-display: var(--font-display), ui-serif, Georgia, serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* ── The ground everything sits on ───────────────────────────────────────── */
+
+html {
+  /* Lenis drives the scroll; leaving the native smooth behaviour on as well
+     makes the two fight and the page stutters on every anchor jump. */
+  scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--color-brand-200); color: var(--color-brand-900); }
+
+/* ── Motion, and standing down from it ───────────────────────────────────── */
+
+/*
+  One rule, applied everywhere: a woman who has asked her operating system for
+  less motion is not asking for a tasteful reduction, she is telling you the
+  movement makes her unwell. Everything stops — including the WebGL loop, which
+  is switched off in JS rather than merely hidden, because a spinning canvas
+  costs battery whether or not anyone can see it move.
+*/
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*
+  Focus that is actually visible — measured, not assumed.
+
+  This was `--color-brand-400` (#a98bf5) with a comment claiming it worked on
+  every ground. It does not: 2.59:1 on `canvas` and 2.73:1 on `surface`, where
+  WCAG 2.2 SC 1.4.11 requires 3:1 for a non-text indicator. `brand-500`
+  (#8f6ae8) is the first step on the ramp that clears it — 3.70:1 and 3.89:1.
+  A focus ring nobody can see is the same as no focus ring.
+*/
+:focus-visible {
+  outline: 3px solid var(--color-brand-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Small shared primitives ─────────────────────────────────────────────── */
+
+.u-grain {
+  /* A fine noise over flat gradients. Banding is very visible on a large
+     purple wash; grain hides it for ~1kB and no layout cost. */
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.u-balance { text-wrap: balance; }
+
+/* ── Motion: arrivals, splits, and the one thing that loops ──────────────── */
+
+/*
+  Everything in this block shares one discipline: the resting state is the
+  ABSENCE of a rule.
+
+  An element with no `data-reveal` or `data-split` attribute is simply visible
+  and untransformed — and that is every element the server renders, every
+  element on a page whose JavaScript never arrived, and every element on a
+  machine that has asked for reduced motion. The hidden state exists only
+  inside a data attribute that JavaScript writes after mount, having already
+  established it can take it back out again. Nothing on this page can end up
+  stranded at `opacity: 0` waiting for an observer that never fired.
+
+  Only `transform` and `opacity` are animated. Both are composited: the browser
+  can run them off the main thread without recalculating a single layout or
+  repainting a single pixel. `width`, `height`, `top`, `margin`, `box-shadow`
+  and `filter` are absent from this file on purpose — each of those costs a
+  layout or a paint on EVERY frame, which is the difference between sixty
+  frames a second and a slideshow.
+*/
+
+/* Arrivals ---------------------------------------------------------------- */
+
+.u-reveal[data-reveal] {
+  will-change: transform, opacity;
+}
+
+.u-reveal[data-reveal="armed"] {
+  opacity: 0;
+  transform: translate3d(0, var(--rv-y, 24px), 0) scale(var(--rv-s, 1));
+}
+
+.u-reveal[data-reveal="in"] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition:
+    opacity 820ms cubic-bezier(0.22, 1, 0.36, 1) var(--rv-d, 0s),
+    transform 820ms cubic-bezier(0.22, 1, 0.36, 1) var(--rv-d, 0s);
+}
+
+/* Headlines that arrive a word at a time ---------------------------------- */
+
+/*
+  The wrapper clips; the word inside it travels. The bottom padding with its
+  matching negative margin is the whole trick — without it the clip lands on
+  the baseline and slices the tail off every `g` and `y` in the headline. It is
+  static, so it costs one layout at parse time and none afterwards.
+*/
+.u-split-w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.04em 0.07em 0.3em;
+  margin: -0.04em -0.07em -0.3em;
+}
+
+.u-split-i {
+  display: inline-block;
+}
+
+.u-split[data-split] .u-split-i {
+  will-change: transform;
+}
+
+.u-split[data-split="armed"] .u-split-i {
+  transform: translate3d(0, 130%, 0);
+}
+
+.u-split[data-split="in"] .u-split-i {
+  transform: translate3d(0, 0, 0);
+  transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  /* Each word carries its own index, so one rule staggers a whole headline. */
+  transition-delay: calc(var(--sp-d, 0s) + var(--sp-i, 0) * var(--sp-g, 0.045s));
+}
+
+/* The seat nobody is sitting in ------------------------------------------ */
+
+/*
+  The only loop on the page, and it is load-bearing: the empty place in the
+  circle is the argument the closing section then makes in words. It breathes
+  rather than flashes — 3.6s, ease-in-out, six per cent — and the global
+  reduced-motion rule above stops it dead on its resting frame.
+*/
+@keyframes u-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.82; }
+  50%      { transform: scale(1.055); opacity: 1; }
+}
+
+.u-breathe {
+  animation: u-breathe 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
