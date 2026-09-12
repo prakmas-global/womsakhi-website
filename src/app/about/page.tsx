@@ -43,18 +43,20 @@ export const metadata: Metadata = {
   members have signed up; 7 are still awaiting review and 2 are not active, so
   28 are members today. Counting the closed ones would flatter this page and
   then disappoint her on the next screen.
+
+  There is deliberately NO member count here. The platform holds 24 active
+  member records and not one of them is a woman who found WomSakhi and signed
+  up — they are seed personas we wrote, plus our own accounts. Printing "24
+  members" on the page that argues this company does not inflate its numbers
+  would have been the exact thing it refuses, dressed as the opposite. The
+  three below are different: they are things she can actually walk into on the
+  day she joins.
 */
-const TODAY = (s: {
-  courses: number;
-  jobs: number;
-  circles: number;
-  members: number;
-}) =>
+const TODAY = (s: { courses: number; jobs: number; circles: number }) =>
   [
     { value: s.courses, label: "courses open" },
     { value: s.jobs, label: "jobs open" },
     { value: s.circles, label: "circles running" },
-    { value: s.members, label: "members" },
   ] as const;
 
 /** The promises, written as refusals — which is what they are. */
@@ -234,16 +236,15 @@ export default async function AboutPage() {
 
         <PageSection id="where-we-are" eyebrow="Honestly" title="Where this is, today">
           <p>
-            WomSakhi is new. Today you can join {stats.courses} courses and
-            apply to {stats.jobs} jobs, {stats.circles} circles are running,
-            and {stats.members} women are members. These are read from the
+            WomSakhi is new, and newer than a number can show. Today you can
+            join {stats.courses} courses and apply to {stats.jobs} jobs, and{" "}
+            {stats.circles} circles are running. Those are read from the
             platform itself when this page is built, and they are the live
             counts, not the totals: a course that has finished and a job that
-            has been filled are not things you can walk into, so they are not
-            counted here. They are small.
+            has been filled are not things you can walk into.
           </p>
 
-          <ul className="grid grid-cols-2 gap-3 pt-1 sm:gap-4">
+          <ul className="grid grid-cols-1 gap-3 pt-1 sm:grid-cols-3 sm:gap-4">
             {today.map((stat) => (
               <li
                 key={stat.label}
@@ -270,8 +271,10 @@ export default async function AboutPage() {
           <p>
             What being early actually means for her: a course she wants may not
             exist yet, and a circle near her town may have four women in it
-            rather than forty. We would rather she knew that before she joined
-            than after.
+            rather than forty. There is no member count on this page because
+            there is nothing yet to count — the accounts in the app today are
+            ours, made while building it. She would be among the first, and we
+            would rather she knew that before she joined than after.
           </p>
         </PageSection>
 
