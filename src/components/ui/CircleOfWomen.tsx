@@ -66,15 +66,25 @@ const SEATS: readonly Seat[] = [
 /** Six o'clock. The place that stays open. */
 const YOUR_SEAT = 180;
 
-/** Seat `i` swings in over this slice of the section's scroll. */
+/*
+  The timing, and the silence at the end.
+
+  Every window closes before the track does. The five women are all seated by
+  82% of the passage, the words land at 76% and the empty place arrives at 92%
+  — which leaves the last tenth of the scroll doing nothing at all, holding the
+  finished circle still while the reader looks at the one seat nobody is in.
+
+  A sequence that finishes exactly as it leaves the screen is a sequence nobody
+  finishes watching. The pause is the point of it.
+*/
 const arrival = (index: number): readonly [number, number] => [
-  0.06 + index * 0.14,
-  0.4 + index * 0.14,
+  0.05 + index * 0.12,
+  0.34 + index * 0.12,
 ];
 
 /** The empty place comes last, after the words. */
-const YOUR_ARRIVAL: readonly [number, number] = [0.76, 0.99];
-const WORDS_ARRIVAL: readonly [number, number] = [0.5, 0.82];
+const YOUR_ARRIVAL: readonly [number, number] = [0.7, 0.92];
+const WORDS_ARRIVAL: readonly [number, number] = [0.46, 0.76];
 
 /*
   The seat box and the ring it sits on, as one pair of custom properties. The
@@ -237,7 +247,7 @@ export function CircleOfWomen({
         }
 
         const apply = (p: number) => {
-          stage.set(mix(0.76, 1, easeOut(windowed(p, 0, 0.78))));
+          stage.set(mix(0.76, 1, easeOut(windowed(p, 0, 0.7))));
           const w = easeOut(windowed(p, WORDS_ARRIVAL[0], WORDS_ARRIVAL[1]));
           wordsOpacity.set(w);
           wordsY.set(mix(16, 0, w));

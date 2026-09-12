@@ -36,7 +36,10 @@ export const PILLARS = [
     title: "Work on your own terms",
     body:
       "Opportunities from employers other women have already been paid by. You can see who paid on time before you say yes — the review runs both ways.",
-    points: ["1,200+ live opportunities", "Verified employers", "Flexible and remote work"],
+    // "1,200+ live opportunities" stood here. Eight are open. A number that is
+    // 150x the truth is the one thing this site cannot afford to print, and
+    // /about prints the real one two clicks away.
+    points: ["Free to apply, always", "Verified employers", "Flexible and remote work"],
     href: "https://app.womsakhi.com/app/work",
     art: "/art/scene-woman-climbing-steps.webp",
     accent: "#5b32a6",

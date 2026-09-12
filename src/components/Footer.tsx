@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { PILLARS, SITE } from "@/lib/site";
 
 /*
@@ -6,24 +7,30 @@ import { PILLARS, SITE } from "@/lib/site";
 
   Dark, so the scroll ends somewhere rather than fading out on the same cream
   it started on. Every link here goes somewhere real: the four pillars point
-  at the sections above, the app button at the app, and the pages that have
-  not been written yet are honestly parked on `#` rather than pointed at a
-  route that would 404 on the first person who clicked it.
+  at the sections of the home page, the app button at the app, and the four
+  company and legal links — which were honestly parked on `#` until the pages
+  behind them existed — now point at the pages themselves.
+
+  The pillar links carry a leading slash. This footer is rendered on /about and
+  /privacy as well as on the home page, and a bare `#earn` there is a link that
+  does nothing at all when a woman taps it: there is no such section on that
+  page. `/#earn` is the same jump from the home page and a real navigation from
+  anywhere else.
 */
 
 const EXPLORE = PILLARS.map((pillar) => ({
   label: pillar.eyebrow,
-  href: `#${pillar.id}`,
+  href: `/#${pillar.id}`,
 }));
 
 const COMPANY = [
-  { label: "About", href: "#" },
-  { label: "Contact", href: "#" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 const LEGAL = [
-  { label: "Privacy", href: "#" },
-  { label: "Terms", href: "#" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
 ] as const;
 
 export function Footer() {
@@ -116,20 +123,31 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h2 className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-300">
+      <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-300">
         {title}
       </h2>
       <ul className="mt-3 lg:mt-4">
-        {links.map((link) => (
-          <li key={`${title}-${link.label}`}>
-            <a
-              href={link.href}
-              className="inline-flex min-h-11 items-center text-[0.9375rem] text-brand-200 transition-colors duration-200 hover:text-white lg:min-h-0 lg:py-1.5"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
+        {links.map((link) => {
+          /* A route gets a `Link` so it is a client navigation; a fragment
+             stays a plain anchor, because turning `/#earn` into a router push
+             would re-enter the home page rather than simply scrolling it. */
+          const className =
+            "flex min-h-11 w-full items-center text-[0.9375rem] text-brand-200 transition-colors duration-200 hover:text-white lg:inline-flex lg:min-h-0 lg:w-auto lg:py-1.5";
+
+          return (
+            <li key={`${title}-${link.label}`}>
+              {link.href.includes("#") ? (
+                <a href={link.href} className={className}>
+                  {link.label}
+                </a>
+              ) : (
+                <Link href={link.href} className={className}>
+                  {link.label}
+                </Link>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

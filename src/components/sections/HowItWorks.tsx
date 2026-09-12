@@ -79,11 +79,12 @@ function StepCard({
           return;
         }
 
-        // Each step owns a quarter of the passage, with a soft shoulder either
-        // side so two are never lit and never both dark.
-        const centre = (index + 0.5) / STEPS.length;
+        // Each step owns a quarter of the sequence — which ends at 88% of the
+        // track, not at 100%, because the last tenth is the hold on the
+        // finished circle and nothing should be lighting up during it.
+        const centre = ((index + 0.5) / STEPS.length) * 0.88;
         const apply = (p: number) => {
-          const distance = Math.abs(p - centre) / (0.72 / STEPS.length);
+          const distance = Math.abs(p - centre) / (0.64 / STEPS.length);
           const near = easeOut(clamp01(1 - distance));
           glow.set(near);
           lift.set(mix(0, -8, near));
@@ -96,7 +97,7 @@ function StepCard({
   );
 
   return (
-    <li className="relative lg:flex lg:min-h-[58svh] lg:items-center">
+    <li className="relative lg:flex lg:min-h-[54svh] lg:items-center">
       <Reveal distance={26} className="w-full">
         <motion.div
           className="relative overflow-hidden rounded-3xl border border-white/12 bg-white/[0.06] p-6 sm:p-7 lg:p-8"
@@ -157,13 +158,13 @@ export function HowItWorks() {
     <section
       id="how-it-works"
       aria-labelledby="how-it-works-title"
-      className="relative isolate bg-brand-950 pt-32 pb-44 text-white sm:pt-36 sm:pb-48 lg:pt-44 lg:pb-52"
+      className="relative isolate bg-brand-950 pt-32 pb-40 text-white sm:pt-36 sm:pb-44 lg:pt-44 lg:pb-44"
     >
       {/* The page descends from pale violet into near-black and back out
           again. Butted straight together those read as separate pages; crossed
           over eleven rems they read as one. */}
       <Seam from={CANVAS} edge="top" depth="9rem" />
-      <Seam from={CANVAS} edge="bottom" depth="11rem" />
+      <Seam from={CANVAS} edge="bottom" depth="10rem" />
 
       <span aria-hidden="true" className="u-grain" />
       <span
@@ -193,7 +194,7 @@ export function HowItWorks() {
 
         <div
           ref={trackRef}
-          className="mt-14 sm:mt-16 lg:mt-24 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:items-start lg:gap-16 xl:gap-24"
+          className="mt-14 sm:mt-16 lg:mt-12 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:items-start lg:gap-16 xl:gap-24"
         >
           {/* The stage. Sticky, so the browser pins it on the compositor and
               no script has to fight the scroll for it. */}
@@ -201,7 +202,7 @@ export function HowItWorks() {
             <CircleOfWomen progress={progress} />
           </div>
 
-          <ol className="mt-14 space-y-10 sm:space-y-12 lg:mt-0 lg:space-y-0">
+          <ol className="mt-14 space-y-10 sm:space-y-12 lg:mt-0 lg:space-y-0 lg:pb-[12svh]">
             {STEPS.map((step, index) => (
               <StepCard key={step.n} progress={progress} step={step} index={index} />
             ))}
