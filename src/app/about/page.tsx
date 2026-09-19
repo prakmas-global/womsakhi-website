@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PILLARS, SITE } from "@/lib/site";
 import { getPlatformStats } from "@/lib/stats";
-import { PageNav } from "@/components/sections/PageNav";
+import Nav from "@/components/Nav";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { PageSection } from "@/components/sections/PageSection";
 import Footer from "@/components/Footer";
@@ -88,7 +88,7 @@ export default async function AboutPage() {
   const today = TODAY(stats);
   return (
     <>
-      <PageNav />
+      <Nav />
 
       <main id="main">
         <PageHeader

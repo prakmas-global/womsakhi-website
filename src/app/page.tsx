@@ -1,32 +1,32 @@
 import Nav from "@/components/Nav";
-import Hero from "@/components/sections/Hero";
-import Pillars from "@/components/sections/Pillars";
-import HowItWorks from "@/components/sections/HowItWorks";
-import Promises from "@/components/sections/Promises";
-import FinalCta from "@/components/sections/FinalCta";
 import Footer from "@/components/Footer";
+import Hero from "@/components/home/Hero";
+import Mission from "@/components/home/Mission";
+import Offer from "@/components/home/Offer";
+import ClosingBand from "@/components/home/ClosingBand";
 
 /**
- * The website.
+ * The home page, built to the owner's reference design section by section:
+ * hero with the stats band overlapping its foot, the mission, what we offer,
+ * and the closing band. The header and footer are the site-wide ones.
  *
- * The order is an argument, not a template: what this is (Hero), what you can
- * actually do here (Pillars), how it works in practice (HowItWorks), what we
- * will and will not do with your money and your documents (Promises), and only
- * then the ask (FinalCta). The trust section sits before the call to action
- * deliberately — this platform asks women to upload identity documents, and
- * answering that before asking for a signup is the whole difference between an
- * invitation and a pitch.
+ * The header is sticky, so it has to be a sibling of the page rather than a
+ * child of the hero's wrapper (a sticky element only sticks inside its own
+ * parent). The hero's blush ground is pulled up underneath it instead.
  */
 export default function Home() {
   return (
     <>
       <Nav />
       <main id="main">
-        <Hero />
-        <Pillars />
-        <HowItWorks />
-        <Promises />
-        <FinalCta />
+        <div className="ws ws-top ws-under-header">
+          <Hero />
+        </div>
+        <div className="ws ws-mid">
+          <Mission />
+          <Offer />
+        </div>
+        <ClosingBand />
       </main>
       <Footer />
     </>

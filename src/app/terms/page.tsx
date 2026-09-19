@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE } from "@/lib/site";
-import { PageNav } from "@/components/sections/PageNav";
+import Nav from "@/components/Nav";
 import { PageHeader } from "@/components/sections/PageHeader";
 import {
   PageDoc,
@@ -54,7 +54,7 @@ const SECTIONS: readonly DocSection[] = [
 export default function TermsPage() {
   return (
     <>
-      <PageNav />
+      <Nav />
 
       <main id="main">
         <PageHeader

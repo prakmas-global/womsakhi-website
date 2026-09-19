@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
-import { PageNav } from "@/components/sections/PageNav";
+import Nav from "@/components/Nav";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { PageContactForm, CONTACT_EMAIL } from "@/components/sections/PageContactForm";
 import Footer from "@/components/Footer";
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <PageNav />
+      <Nav />
 
       <main id="main">
         <PageHeader
