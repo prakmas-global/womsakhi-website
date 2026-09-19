@@ -179,6 +179,18 @@
 .brandOfficial>span small{position:static;display:block;width:auto;margin-top:4px;font-size:4.4px;text-align:left;letter-spacing:.11em;white-space:nowrap}
 .footerLogo{display:flex;align-items:center;gap:8px}.footerLogo img{width:48px;height:32px;object-fit:contain}.footerLogo b{font:500 27px var(--font-serif),serif;background:linear-gradient(90deg,#45124b,#c72c6c);background-clip:text;-webkit-background-clip:text;color:transparent}
 @media(max-width:760px){.brandOfficial{width:142px;height:46px;gap:5px}.brandOfficial>img{width:36px;height:27px}.brandOfficial>span b{font-size:19px}.brandOfficial>span small{font-size:3.5px}.footerLogo b{font-size:25px}}
+.brandLockup{display:flex;width:86px;height:68px;align-items:center;justify-content:center;overflow:visible}
+.brandLockup>img{width:66px;height:66px;object-fit:contain;mix-blend-mode:normal}
+.footerBrand .footerLockup{width:116px;height:116px;object-fit:contain;mix-blend-mode:normal;margin:-24px 0 -15px}
+@media(max-width:760px){.brandLockup{width:58px;height:52px}.brandLockup>img{width:50px;height:50px}.footerBrand .footerLockup{width:100px;height:100px;margin:-20px 0 -12px}}
+.brandParts{display:flex;width:174px;height:52px;align-items:center;gap:3px;overflow:visible}
+.brandParts>.brandSymbol{width:45px;height:45px;object-fit:contain;mix-blend-mode:multiply}
+.brandParts>.brandWord{width:116px;height:39px;object-fit:contain;mix-blend-mode:multiply}
+.ctaBrandLotus{display:block!important;position:relative!important;width:38px!important;height:24px!important;margin:0 auto!important;object-fit:contain!important;filter:none!important}
+@media(max-width:760px){.brandParts{width:142px;height:46px;gap:1px}.brandParts>.brandSymbol{width:37px;height:37px}.brandParts>.brandWord{width:98px;height:33px}}
+.brandWordOnly{display:flex;width:162px;height:52px;align-items:center;overflow:visible}
+.brandWordOnly>img{width:150px;height:50px;object-fit:contain;mix-blend-mode:multiply}
+@media(max-width:760px){.brandWordOnly{width:142px;height:46px}.brandWordOnly>img{width:132px;height:44px}}
 
 /* Crisp botanical accent replacing the oversized text ornament. */
 .decorLeaves{left:-18px;top:28px;width:98px;height:148px;font-size:0;transform:rotate(-18deg)}
