@@ -158,3 +158,18 @@
   .heroArt::after,
   .missionArt::after { display:none; }
 }
+
+/* Crisp botanical accent replacing the oversized text ornament. */
+.decorLeaves{left:-18px;top:28px;width:98px;height:148px;font-size:0;transform:rotate(-18deg)}
+.decorLeaves:before,.decorLeaves:after{content:"";position:absolute;bottom:0;width:54px;height:118px;border-radius:100% 0 100% 0;background:linear-gradient(145deg,#df668e,#a82054);opacity:.88;transform-origin:bottom center}
+.decorLeaves:before{left:7px;transform:rotate(-24deg)}
+.decorLeaves:after{left:35px;transform:rotate(18deg);background:linear-gradient(145deg,#f0b0c3,#c74270);opacity:.72}
+
+@media(max-width:760px){
+  .heroArt .l1{left:-34px;top:76px;transform:rotate(-36deg) scale(.62)}
+  .heroArt .l2{left:-51px;top:155px;transform:rotate(-65deg) scale(.45)}
+  .heroArt .l3{right:-42px;top:245px;transform:rotate(34deg) scale(.72)}
+  .heroArt .l4{right:4px;top:316px;transform:rotate(64deg) scale(.55)}
+  .offers{height:auto}
+  .decorLeaves{left:-42px;top:42px;transform:rotate(-18deg) scale(.7)}
+}
