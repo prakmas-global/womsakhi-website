@@ -1,202 +1,103 @@
-@import "tailwindcss";
+:root{--berry:#9b1d50;--ink:#141427;--body:#514d55;--cream:#fcf8f6;--line:#eee5e4}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--font-sans),sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}header{position:relative;z-index:20;width:min(100%,1007px);height:70px;margin:auto;display:flex;align-items:center;padding:0 31px;gap:38px}.brand{display:flex;align-items:center;gap:8px;margin-right:auto}.brand .lotus{font-size:42px;line-height:1;color:#d47a9b;transform:rotate(14deg)}.brand b{display:block;font:500 25px/1 var(--font-serif),serif}.brand small{display:block;margin-top:5px;color:#ac9fa5;font-size:5.5px;font-weight:600;letter-spacing:.15em}nav{display:flex;gap:28px;font-size:10px;font-weight:600}nav a{padding:10px 0}nav .active{border-bottom:2px solid #cd8ba4}.headerActions{display:flex;align-items:center;gap:15px}.headerActions button{border:0;background:none;font-size:26px}.primary,.ghost,.light{display:inline-flex;align-items:center;justify-content:center;border-radius:999px}.primary{height:36px;padding:0 22px;background:var(--berry);color:white;font-size:10px;box-shadow:0 10px 24px #8d285130}.ghost{height:36px;padding:0 20px;background:#fff9;border:1px solid #eadfe1;font-size:10px}.menu{display:none;border:0;background:none;font-size:22px}main{overflow:hidden}.hero{position:relative;width:min(100%,1007px);height:440px;margin:auto}.heroCopy{position:absolute;z-index:4;left:57px;top:32px;width:355px}.eyebrow{margin:0;color:#89747e;font-size:9px;font-weight:600;letter-spacing:.17em}.eyebrow:after{content:"";display:inline-block;width:18px;height:1px;margin:0 0 3px 8px;background:currentColor;opacity:.5}.hero h1{margin:17px 0 12px;font:500 49px/1.06 var(--font-serif),serif;letter-spacing:-.02em}.hero h1 em,h2 em{color:var(--berry);font-weight:500}.lead{width:345px;margin:0;color:var(--body);font-size:12.5px;line-height:1.5}.actions{display:flex;align-items:center;gap:20px;margin-top:22px}.actions .primary{height:40px}.watch{display:flex;align-items:center;gap:9px;border:0;background:none;font-size:11px;font-weight:600}.watch i,.play{display:grid;place-items:center;width:38px;height:38px;border:0;border-radius:50%;background:white;color:var(--berry);box-shadow:0 8px 24px #6d33491c;font-style:normal}.proof{display:flex;align-items:center;gap:15px;margin-top:27px}.faces{display:flex}.faces img{width:38px;height:38px;border:2px solid white;border-radius:50%;object-fit:cover}.faces img+img{margin-left:-10px}.faces img:nth-child(1){object-position:15%}.faces img:nth-child(2){object-position:48%}.faces img:nth-child(3){object-position:80%}.proof b{display:block;font-size:16px}.proof small{display:block;margin-top:4px;color:#716a70;font-size:9px}.heroArt{position:absolute;left:386px;top:0;width:621px;height:535px}.heroArt>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:45% 0 35% 15%/18% 0 18% 12%;filter:saturate(.93) brightness(1.04);-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%),linear-gradient(180deg,transparent,#000 8%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 14%),linear-gradient(180deg,transparent,#000 8%);mask-composite:intersect}.leaf{position:absolute;z-index:2;width:85px;height:165px;border-radius:100% 0 100% 0;background:linear-gradient(145deg,#e5a4bd99,#b9507d80);transform:rotate(-24deg)}.l1{left:26px;top:35px}.l2{left:4px;top:130px;transform:rotate(-60deg) scale(.7)}.script{font:500 25px/1.05 var(--font-script),cursive}.heroArt .top{position:absolute;right:51px;top:24px;transform:rotate(-5deg)}.heroArt .side{position:absolute;left:12px;top:282px;transform:rotate(-8deg)}.steps{position:absolute;right:31px;top:216px;width:181px;height:126px;padding:25px;border:16px solid #fff;border-radius:24px;background:#f7e5ed;box-shadow:0 16px 34px #71334b22;display:grid;grid-template-columns:27px 1fr;gap:4px;color:#692441;font-size:11px}.steps b{line-height:1.5}.steps .miniFaces{grid-column:2;font-size:13px}.steps i{position:absolute;right:16px;bottom:18px}.stats{position:relative;z-index:7;width:min(calc(100% - 112px),895px);height:95px;margin:0 auto 0;border-radius:50px;background:#fffaf8;box-shadow:0 12px 40px #6c294813;display:grid;grid-template-columns:repeat(4,1fr)}.stats article{position:relative;display:grid;grid-template-columns:54px 1fr;align-content:center;padding-left:31px}.stats article+article:before{content:"";position:absolute;left:0;top:28px;height:42px;border-left:1px solid var(--line)}.stats i{grid-row:1/3;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:#fde7ec;color:var(--berry);font-size:23px;font-style:normal}.stats article:nth-child(2) i{background:#fce7ef}.stats article:nth-child(3) i{background:#f3e5fa}.stats b{font:500 24px/1 var(--font-serif),serif}.stats small{margin-top:5px;color:#665e64;font-size:9px}.mission{width:min(100%,1007px);height:435px;margin:auto;display:grid;grid-template-columns:53% 47%;align-items:center}.missionArt{position:relative;height:425px}.missionArt>img:first-child{width:100%;height:100%;object-fit:cover;border-radius:50% 48% 34% 8%/25% 20% 15% 10%;-webkit-mask-image:linear-gradient(270deg,transparent,#000 6%),linear-gradient(180deg,transparent,#000 4%,#000 95%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(270deg,transparent,#000 6%),linear-gradient(180deg,transparent,#000 4%,#000 95%,transparent);mask-composite:intersect}.decorLeaves{position:absolute;left:-10px;top:20px;color:#c53d68;font-size:120px}.mission .play{position:absolute;left:242px;top:170px}.together{position:absolute;left:300px;top:179px;color:white;font:500 18px Caveat}.mission figure{position:absolute;left:32px;bottom:35px;width:285px;height:78px;margin:0;padding:14px;background:white;border-radius:18px;box-shadow:0 12px 26px #33152324;display:flex;align-items:center;gap:12px}.mission figure img{width:42px;height:42px;border-radius:50%;object-fit:cover;object-position:75%}.mission blockquote{margin:0;font-size:10px;line-height:1.4}.mission blockquote small{display:block;margin-top:5px;color:#726870}.mission figure>span{margin-left:auto}.missionCopy{padding:0 50px 0 18px}.mission h2,.offers h2{margin:14px 0;font:500 32px/1.08 var(--font-serif),serif;letter-spacing:-.015em}.missionCopy>p:not(.eyebrow){font-size:11.5px;line-height:1.55;color:var(--body)}.berry{color:#a86a83}.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px;text-align:center;font-size:9px;line-height:1.4}.pillars i{display:grid;place-items:center;width:45px;height:45px;margin:0 auto 8px;border-radius:50%;background:#e9efff;color:#2861b1;font-size:22px;font-style:normal}.textLink{display:flex;justify-content:space-between;margin-top:21px;padding-top:15px;border-top:1px solid var(--line);font-size:10px}.textLink b{color:var(--berry)}.offers{width:min(100%,1007px);height:320px;margin:auto;padding:28px 52px}.sectionHead{display:flex;align-items:end;justify-content:space-between}.sectionHead h2{margin-bottom:0}.sectionHead>a{color:var(--berry);font-size:10px;text-decoration:underline}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:23px;margin-top:25px}.cards article{position:relative;height:178px;overflow:hidden;padding:72px 14px 14px;border:1px solid #eee7e5;border-radius:12px;background:linear-gradient(145deg,#fff,#fbf7f6);box-shadow:0 12px 26px #6a394415}.cards img{position:absolute;right:0;top:0;width:130px;height:92px;object-fit:cover;-webkit-mask-image:linear-gradient(90deg,transparent,#000 25%),linear-gradient(180deg,#000 55%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 25%),linear-gradient(180deg,#000 55%,transparent);mask-composite:intersect}.cards i{position:absolute;left:14px;top:14px;width:43px;height:43px;display:grid;place-items:center;border-radius:50%;background:#fde4ec;color:var(--berry);font-style:normal;font-size:20px}.cards h3{position:relative;margin:0;font-size:13px}.cards p{position:relative;min-height:42px;margin:10px 0 5px;color:#665e64;font-size:10px;line-height:1.45}.cards a{color:var(--berry);font-size:10px}.closing{position:relative;width:min(100%,1007px);height:250px;margin:auto;overflow:hidden;border-radius:62px 62px 45% 45%/38px 38px 12% 12%;background:radial-gradient(circle at 15% 0,#bd4677,transparent 38%),linear-gradient(120deg,#9d2859,#4c1635);color:white;text-align:center;box-shadow:0 28px 60px #7a1a4233}.closing>div{position:relative;z-index:2;padding-top:32px;color:#efb9ce}.closing h2{margin:9px 0 0;color:white;font:500 29px var(--font-serif),serif}.closing p:not(.script){margin:8px 0 18px;color:#f0dce4;font-size:12px}.light{height:38px;padding:0 24px;background:white;color:#63213f;font-size:10px}.closing>.script{position:absolute;right:70px;top:65px;transform:rotate(-9deg)}.bigLeaf{position:absolute;width:130px;height:230px;border-radius:100% 0 100% 0;background:linear-gradient(145deg,#efb1ca,#8e2756);opacity:.65}.bigLeaf.left{left:-40px;bottom:-90px;transform:rotate(-18deg)}.bigLeaf.right{right:-45px;top:-70px;transform:rotate(42deg)}footer{width:min(100%,1007px);margin:auto;padding:28px 52px 45px;display:flex;justify-content:space-between;color:#746970;font-size:10px}
+@media(max-width:760px){header{height:60px;padding:0 18px}.brand b{font-size:19px}.brand small{font-size:4px}nav{display:none;position:absolute;left:12px;right:12px;top:58px;padding:18px;background:#fff;border-radius:10px;box-shadow:0 15px 40px #55223b24;flex-direction:column;gap:4px}nav.open{display:flex}.headerActions .ghost,.headerActions button{display:none}.headerActions{margin-left:auto}.headerActions .primary{height:32px;padding:0 15px}.menu{display:block}.hero{height:auto;padding:28px 18px 0}.heroCopy{position:relative;left:auto;top:auto;width:auto}.hero h1{font-size:42px}.lead{width:auto}.heroArt{position:relative;left:auto;top:auto;width:calc(100% + 36px);height:390px;margin:18px -18px 0}.heroArt .top{right:20px}.heroArt .side{left:22px}.steps{right:14px;top:210px;transform:scale(.76);transform-origin:right center}.stats{width:calc(100% - 24px);height:auto;margin-top:-15px;border-radius:24px;grid-template-columns:repeat(2,1fr);padding:12px}.stats article{padding:12px 8px;grid-template-columns:42px 1fr}.stats article+article:before{display:none}.stats i{width:35px;height:35px;font-size:18px}.stats b{font-size:18px}.mission{height:auto;display:block;padding-top:35px}.missionArt{height:350px}.mission .play{left:45%;top:140px}.together{left:58%;top:149px}.mission figure{left:14px;right:14px;bottom:12px;width:auto}.missionCopy{padding:28px 18px 50px}.mission h2,.offers h2{font-size:30px}.offers{height:auto;padding:32px 18px 52px}.sectionHead{align-items:start;gap:10px;flex-direction:column}.cards{grid-template-columns:1fr;gap:14px}.cards article{height:170px}.cards img{width:62%;height:100px}.closing{width:calc(100% - 24px);height:250px;border-radius:28px 28px 45% 45%/28px 28px 10% 10%}.closing h2{padding:0 35px;font-size:25px}.closing>.script{display:none}footer{padding:30px 20px;flex-direction:column;gap:12px}}
 
-/*
-  WomSakhi — the website.
-
-  The palette is the owner's reference design, reproduced literally: berry
-  pills on a blush-cream ground, navy-black serif type, rose-pink leaves. The
-  hex values were sampled from the reference pixels, not picked by eye.
-*/
-@theme {
-  /* Berry, sampled from the owner's reference design (the "Get Started" and
-     "Join the Movement" pills are #901f4d; the ramp is built around it). */
-  --color-brand-50:  #fbf1f5;
-  --color-brand-100: #f7e1ea;
-  --color-brand-200: #efc3d4;
-  --color-brand-300: #e29ab6;
-  --color-brand-400: #cf6c93;
-  --color-brand-500: #b43f70;
-  --color-brand-600: #901f4d;
-  --color-brand-700: #7a1a42;
-  --color-brand-800: #641638;
-  --color-brand-900: #4b122b;
-  --color-brand-950: #2e0a1a;
-
-  --color-pink-brand: #e089a8;
-  --color-pink-deep:  #c9577f;
-  --color-gold:       #e8903a;
-
-  /* Ink and ground: a navy-black for type, a warm blush cream underneath. */
-  --color-ink:       #15162b;
-  --color-ink-2:     #3d3b48;
-  --color-muted:     #6a6571;
-  --color-canvas:    #fbf7f6;
-  --color-surface:   #ffffff;
-  --color-line:      #efe8e7;
-
-  --font-display: var(--font-display), ui-serif, Georgia, serif;
-  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-accent: var(--font-accent), ui-serif, Georgia, serif;
-  --font-script: var(--font-script), cursive;
-
-  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+/* Reference-specific organic image cuts: these are deliberate silhouettes,
+   not ordinary rounded rectangles. */
+.site {
+  width: 1007px;
+  margin-inline: auto;
+  zoom: calc(100vw / 1007px);
 }
 
-/* ── The ground everything sits on ───────────────────────────────────────── */
+.site .header,
+.site .hero,
+.site .mission,
+.site .offers,
+.site .closing,
+.site footer { width: 1007px; }
 
-html {
-  /* Lenis drives the scroll; leaving the native smooth behaviour on as well
-     makes the two fight and the page stutters on every anchor jump. */
-  scroll-behavior: auto;
-  -webkit-text-size-adjust: 100%;
+.brand .lotus {
+  position: relative;
+  width: 44px;
+  height: 36px;
+  flex: none;
+  font-size: 0;
+  transform: none;
+}
+.brand .lotus i { position:absolute; left:18px; bottom:3px; width:12px; height:29px; border-radius:90% 0 90% 0; background:#d8789b; transform-origin:50% 100%; }
+.brand .lotus i:nth-child(1){transform:rotate(-68deg);opacity:.76}.brand .lotus i:nth-child(2){transform:rotate(-36deg);opacity:.88}.brand .lotus i:nth-child(3){transform:rotate(0)}.brand .lotus i:nth-child(4){transform:rotate(36deg);opacity:.88}.brand .lotus i:nth-child(5){transform:rotate(68deg);opacity:.76}
+
+.closing { height: 202px; }
+.closing > div { padding-top: 24px; }
+.closing .botanical { z-index:1; object-fit:cover; object-position:center 72%; opacity:.35; mix-blend-mode:screen; }
+
+.referenceArt > img {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: fill !important;
+  border-radius: 0 !important;
+  clip-path: none !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+}
+.referenceArt::after { display:none !important; }
+.artHotspot { position:absolute; z-index:5; inset:0; }
+.offers { height:313px; }
+.referenceCards article { padding:0; background:none; border:0; box-shadow:none; }
+.referenceCards article > img { position:absolute !important; inset:0 !important; width:100% !important; height:100% !important; object-fit:fill !important; -webkit-mask:none !important; mask:none !important; }
+.referenceCards article > a { position:absolute; z-index:2; inset:0; }
+.referenceClosing { height:209px; border-radius:0; background:none; box-shadow:none; }
+.referenceClosing > img { object-fit:fill; }
+.referenceClosing > a { position:absolute; z-index:3; inset:0; }
+
+.heroArt > img {
+  border-radius: 0;
+  -webkit-mask: none;
+  mask: none;
+  clip-path: path("M 150 0 C 75 0 38 33 38 112 L 38 438 C 142 444 246 442 351 446 C 465 450 521 500 621 535 L 621 0 Z");
 }
 
-body {
-  background: var(--color-canvas);
-  color: var(--color-ink);
-  font-family: var(--font-sans);
-  overflow-x: clip;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-::selection { background: var(--color-brand-200); color: var(--color-brand-900); }
-
-/* ── Motion, and standing down from it ───────────────────────────────────── */
-
-/*
-  One rule, applied everywhere: a woman who has asked her operating system for
-  less motion is not asking for a tasteful reduction, she is telling you the
-  movement makes her unwell. Everything stops — including the WebGL loop, which
-  is switched off in JS rather than merely hidden, because a spinning canvas
-  costs battery whether or not anyone can see it move.
-*/
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/*
-  Focus that is actually visible — measured, not assumed.
-
-  WCAG 2.2 SC 1.4.11 asks 3:1 for a non-text indicator. `brand-500` (#b43f70)
-  is about 5.6:1 on the cream canvas and 6:1 on white. A focus ring nobody can
-  see is the same as no focus ring.
-*/
-:focus-visible {
-  outline: 3px solid var(--color-brand-500);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* ── Small shared primitives ─────────────────────────────────────────────── */
-
-.u-grain {
-  /* A fine noise over flat gradients. Banding is very visible on a large
-     purple wash; grain hides it for ~1kB and no layout cost. */
+.heroArt::after {
+  content: "";
   position: absolute;
-  inset: 0;
+  z-index: 1;
+  right: -84px;
+  bottom: -42px;
+  width: 185px;
+  height: 185px;
+  border-radius: 50%;
+  background: var(--cream);
   pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.u-balance { text-wrap: balance; }
-
-/* ── Motion: arrivals, splits, and the one thing that loops ──────────────── */
-
-/*
-  Everything in this block shares one discipline: the resting state is the
-  ABSENCE of a rule.
-
-  An element with no `data-reveal` or `data-split` attribute is simply visible
-  and untransformed — and that is every element the server renders, every
-  element on a page whose JavaScript never arrived, and every element on a
-  machine that has asked for reduced motion. The hidden state exists only
-  inside a data attribute that JavaScript writes after mount, having already
-  established it can take it back out again. Nothing on this page can end up
-  stranded at `opacity: 0` waiting for an observer that never fired.
-
-  Only `transform` and `opacity` are animated. Both are composited: the browser
-  can run them off the main thread without recalculating a single layout or
-  repainting a single pixel. `width`, `height`, `top`, `margin`, `box-shadow`
-  and `filter` are absent from this file on purpose — each of those costs a
-  layout or a paint on EVERY frame, which is the difference between sixty
-  frames a second and a slideshow.
-*/
-
-/* Arrivals ---------------------------------------------------------------- */
-
-.u-reveal[data-reveal] {
-  will-change: transform, opacity;
+.missionArt > img:first-child {
+  border-radius: 0;
+  -webkit-mask: none;
+  mask: none;
+  clip-path: path("M 142 0 C 63 0 8 48 2 129 L 0 339 C 0 398 32 425 93 425 L 392 425 C 486 425 530 385 530 301 L 530 151 C 530 60 461 0 363 0 Z");
 }
 
-.u-reveal[data-reveal="armed"] {
-  opacity: 0;
-  transform: translate3d(0, var(--rv-y, 24px), 0) scale(var(--rv-s, 1));
-}
+.missionArt::after { display: none; }
 
-.u-reveal[data-reveal="in"] {
-  opacity: 1;
-  transform: translate3d(0, 0, 0) scale(1);
-  transition:
-    opacity 820ms cubic-bezier(0.22, 1, 0.36, 1) var(--rv-d, 0s),
-    transform 820ms cubic-bezier(0.22, 1, 0.36, 1) var(--rv-d, 0s);
-}
+.missionArt figure,
+.missionArt .play,
+.missionArt .together,
+.missionArt .decorLeaves,
+.heroArt .steps,
+.heroArt .script,
+.heroArt .leaf { z-index: 3; }
 
-/* Headlines that arrive a word at a time ---------------------------------- */
-
-/*
-  The wrapper clips; the word inside it travels. The bottom padding with its
-  matching negative margin is the whole trick — without it the clip lands on
-  the baseline and slices the tail off every `g` and `y` in the headline. It is
-  static, so it costs one layout at parse time and none afterwards.
-*/
-.u-split-w {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: top;
-  padding: 0.04em 0.07em 0.3em;
-  margin: -0.04em -0.07em -0.3em;
-}
-
-.u-split-i {
-  display: inline-block;
-}
-
-.u-split[data-split] .u-split-i {
-  will-change: transform;
-}
-
-.u-split[data-split="armed"] .u-split-i {
-  transform: translate3d(0, 130%, 0);
-}
-
-.u-split[data-split="in"] .u-split-i {
-  transform: translate3d(0, 0, 0);
-  transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
-  /* Each word carries its own index, so one rule staggers a whole headline. */
-  transition-delay: calc(var(--sp-d, 0s) + var(--sp-i, 0) * var(--sp-g, 0.045s));
-}
-
-/* The seat nobody is sitting in ------------------------------------------ */
-
-/*
-  The only loop on the page, and it is load-bearing: the empty place in the
-  circle is the argument the closing section then makes in words. It breathes
-  rather than flashes — 3.6s, ease-in-out, six per cent — and the global
-  reduced-motion rule above stops it dead on its resting frame.
-*/
-@keyframes u-breathe {
-  0%, 100% { transform: scale(1); opacity: 0.82; }
-  50%      { transform: scale(1.055); opacity: 1; }
-}
-
-.u-breathe {
-  animation: u-breathe 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+@media(max-width:760px){
+  .site { width: 100%; zoom: 1; }
+  .site .header,
+  .site .hero,
+  .site .mission,
+  .site .offers,
+  .site .closing,
+  .site footer { width: 100%; }
+  .heroArt > img,
+  .missionArt > img:first-child { clip-path: none; border-radius: 46% 46% 20px 20px / 16% 16% 20px 20px; }
+  .heroArt::after,
+  .missionArt::after { display:none; }
 }
