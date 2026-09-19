@@ -70,7 +70,43 @@
   pointer-events:none;
 }
 .heroArt .leaf,.heroArt .script,.heroArt .steps{z-index:3}
+.heroArt .l3{left:auto;right:-8px;top:282px;width:92px;height:180px;transform:rotate(34deg);opacity:.66}
+.heroArt .l4{left:auto;right:43px;top:345px;width:67px;height:140px;transform:rotate(64deg);opacity:.52}
 .heroArt>img,.missionArt>img:first-child{filter:saturate(.95) contrast(1.02)}
+
+.heroArt > .heroBackdrop {
+  position:absolute !important;
+  inset:0 118px auto auto !important;
+  width:390px !important;
+  height:455px !important;
+  object-fit:cover !important;
+  object-position:center !important;
+  clip-path:ellipse(48% 56% at 52% 48%) !important;
+  -webkit-mask:none !important;
+  mask:none !important;
+  z-index:0;
+}
+.heroArt > .heroWoman {
+  position:absolute !important;
+  inset:0 -8px auto auto !important;
+  width:600px !important;
+  height:535px !important;
+  object-fit:contain !important;
+  object-position:right bottom !important;
+  clip-path:none !important;
+  -webkit-mask:none !important;
+  mask:none !important;
+  filter:none !important;
+  z-index:1;
+}
+.heroArt::before{display:none}
+
+.missionArt > img:first-child {
+  clip-path:path("M 150 0 C 64 0 5 45 0 132 L 0 340 C 0 402 32 425 92 425 C 205 425 330 414 438 397 C 500 387 530 354 530 292 L 530 155 C 530 60 458 0 360 0 Z") !important;
+  border-radius:0 !important;
+  -webkit-mask:none !important;
+  mask:none !important;
+}
 
 .heroArt > img {
   border-radius: 0;
