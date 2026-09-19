@@ -73,7 +73,7 @@ export function Promises() {
     >
       <div className="mx-auto grid w-full max-w-[1440px] gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-16 lg:px-10 xl:gap-24">
         <div className="lg:self-center">
-          <p className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-3.5 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-700">
+          <p className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
             <span aria-hidden className="size-1.5 rounded-full bg-pink-deep" />
             Our promises
           </p>

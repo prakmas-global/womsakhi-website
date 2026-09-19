@@ -44,8 +44,25 @@ export function FinalCta() {
       aria-labelledby="join-heading"
       className="relative isolate scroll-mt-28 bg-canvas px-4 pt-4 pb-28 sm:px-6 sm:pb-32 md:pb-40 lg:px-10"
     >
-      {/* Into the footer without a line across the page. */}
-      <Seam from={FOOTER_GROUND} edge="bottom" depth="7rem" />
+      {/*
+        Into the footer without a line across the page.
+
+        The footer does not present a flat ground to meet: it lights its own
+        top corners with a pink glow at 82% and a violet one at the left edge.
+        A seam that ends at the footer's flat base colour therefore lands on a
+        seam after all — sampled, the join jumped from #1a0f38 to #3e204c on
+        the right-hand side. So the crossing carries the same two lights,
+        re-aimed at its own bottom edge, and the two grounds meet already lit.
+      */}
+      <Seam
+        from={FOOTER_GROUND}
+        edge="bottom"
+        depth="9rem"
+        glow={
+          "radial-gradient(70% 150% at 82% 100%, rgba(225,96,164,0.16), transparent 62%)," +
+          " radial-gradient(60% 150% at 0% 100%, rgba(118,72,179,0.22), transparent 60%)"
+        }
+      />
 
       <DepthLayer
         ranges={PANEL}
@@ -66,7 +83,7 @@ export function FinalCta() {
         <span aria-hidden className="u-grain -z-10" />
 
         <div className="relative mx-auto max-w-[760px] px-5 py-16 text-center sm:px-8 sm:py-20 md:py-28">
-          <p className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-white">
+          <p className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white">
             <span aria-hidden className="size-1.5 rounded-full bg-gold" />
             Free to join
           </p>

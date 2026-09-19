@@ -145,27 +145,52 @@ function PillarRow({ pillar, index }: { pillar: Pillar; index: number }) {
   const points: readonly string[] = pillar.points;
 
   return (
+    /*
+      `id` is not decoration — it is the destination of a link that has been
+      broken this whole time.
+
+      `Nav` builds its four links straight off `PILLARS`, so they point at
+      `#learn`, `#work`, `#earn` and `#circle`. Nothing on the page carried
+      those ids: grepping the rendered HTML for all four returned zero. Every
+      item in the primary navigation was a no-op.
+
+      `scroll-mt-28` is the other half of it. The bar is fixed and 5.75rem
+      tall, so an anchor that lands flush against the top of the viewport lands
+      underneath it — the row a woman asked for would arrive with its eyebrow
+      and half its heading behind the navigation she used to get there.
+    */
     <article
       ref={rowRef}
+      id={pillar.id}
       aria-labelledby={`pillar-${pillar.id}-title`}
-      className="relative grid grid-cols-1 items-center gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-x-16"
+      className="relative grid scroll-mt-28 grid-cols-1 items-center gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-x-16"
     >
-      {/* PLANE 0 — the deepest thing in the row. The pillar's own name, the
-          same word the nav uses, passing behind the composition like a chapter
-          title. Hidden from assistive technology: the h3 below is the heading,
-          and this is the same word again at 1/20th the contrast. */}
+      {/* PLANE 0 — the deepest thing in the row: the pillar's own name, the
+          same word the nav uses, passing behind the copy like a chapter title.
+
+          It sits behind the TEXT column, not behind the picture, and that is
+          the whole difference between a word and a smudge. There are only
+          about 128 pixels of clear canvas outside the card at any viewport
+          this design targets, so a word anchored to the outer edge shows one
+          letter and reads as an artefact. Behind the copy it has the full
+          column, and at nine per cent of the accent it costs the body text
+          nothing measurable — #3d3660 still lands at 8.9:1 on the tinted
+          ground, against the 4.5:1 SC 1.4.3 asks for.
+
+          Hidden from assistive technology: the h3 two elements down is the
+          same word's heading, and this is decoration. */}
       <motion.span
         aria-hidden="true"
         className={clsx(
           "pointer-events-none absolute top-1/2 -z-10 hidden select-none font-display",
-          "text-[13rem] leading-none font-semibold tracking-[-0.04em] xl:text-[17rem] lg:block",
-          imageFirst ? "left-[-3.5rem] xl:left-[-6rem]" : "right-[-3.5rem] xl:right-[-6rem]",
+          "text-[10rem] leading-none font-semibold tracking-[-0.045em] xl:text-[12.5rem] lg:block",
+          imageFirst ? "right-[-2rem] xl:right-[-3rem]" : "left-[-2rem] xl:left-[-3rem]",
         )}
         style={{
           y: ghost.y,
           x: ghost.x,
-          color: `${accent}12`,
-          marginTop: "-0.52em",
+          color: `${accent}17`,
+          marginTop: "-0.5em",
         }}
       >
         {pillar.eyebrow}
@@ -264,7 +289,7 @@ function PillarRow({ pillar, index }: { pillar: Pillar; index: number }) {
       >
         <motion.div style={{ y: copy.y }}>
           <p
-            className="flex items-center gap-3 text-[0.7rem] font-bold uppercase tracking-[0.24em]"
+            className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em]"
             style={{ color: accent }}
           >
             <span aria-hidden="true" className="h-px w-7" style={{ backgroundColor: accent }} />

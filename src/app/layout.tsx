@@ -1,25 +1,43 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
+import { Frank_Ruhl_Libre, Inter, PT_Serif, Vujahday_Script } from "next/font/google";
 import "./globals.css";
+import "./site.css";
 import { SITE } from "@/lib/site";
 import { SmoothScroll } from "@/components/SmoothScroll";
 
 /*
-  Two faces, doing two jobs.
+  Four faces, each matched to the owner's reference design by rendering the
+  candidates beside it and comparing glyph shapes, not by name.
 
-  Fraunces is the voice: a serif with real warmth and an optical size axis, so
-  a 96px headline is drawn differently from a 24px one rather than merely
-  scaled. Plus Jakarta Sans carries everything that has to be read rather than
-  felt. Both are variable, so the weight range costs one file each.
+  Frank Ruhl Libre is the display serif (headlines, numbers, the wordmark): of
+  forty Google serifs it overlapped the reference headline most closely.
+  It has no italic, so the one italic word in the hero ("Stronger") is set in
+  PT Serif Italic, whose wide round italic is the nearest match to the
+  reference's. Vujahday Script is the handwriting ("Learn / Grow / Achieve /
+  Together"), and Inter carries everything that has to be read.
 */
-const display = Fraunces({
+const display = Frank_Ruhl_Libre({
   subsets: ["latin"],
   variable: "--font-display",
-  axes: ["SOFT", "WONK", "opsz"],
   display: "swap",
 });
 
-const sans = Plus_Jakarta_Sans({
+const accent = PT_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: "italic",
+  variable: "--font-accent",
+  display: "swap",
+});
+
+const script = Vujahday_Script({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-script",
+  display: "swap",
+});
+
+const sans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
@@ -45,14 +63,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#7648b3",
+  themeColor: "#901f4d",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+    <html lang="en" className={`${display.variable} ${accent.variable} ${script.variable} ${sans.variable}`}>
       <body>
         {/* Before anything else in the DOM, so a keyboard reaches it first. */}
         <a

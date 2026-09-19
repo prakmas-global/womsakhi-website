@@ -15,7 +15,27 @@ export const SITE = {
   app: "https://app.womsakhi.com",
   signup: "https://app.womsakhi.com/signup",
   signin: "https://app.womsakhi.com/signin",
+  /** The member app's own search page; it reads `?q=`. */
+  search: "https://app.womsakhi.com/app/search",
 } as const;
+
+/*
+  The header's six links, in the order the reference design sets them.
+
+  Home, About and Contact are pages. Programs, Community and Resources are not
+  pages on this site (yet), so they are anchors to the part of the home page
+  that answers them — the four programme cards, the mission section, and the
+  footer's resources column — written with a leading slash so they work from
+  every route, not only from the home page.
+*/
+export const NAV = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Programs", href: "/#programs" },
+  { label: "Community", href: "/#community" },
+  { label: "Resources", href: "/#resources" },
+  { label: "Contact", href: "/contact" },
+] as const;
 
 /** The four things a woman can do here. The product's own four modes. */
 export const PILLARS = [
@@ -36,7 +56,10 @@ export const PILLARS = [
     title: "Work on your own terms",
     body:
       "Opportunities from employers other women have already been paid by. You can see who paid on time before you say yes — the review runs both ways.",
-    points: ["1,200+ live opportunities", "Verified employers", "Flexible and remote work"],
+    // "1,200+ live opportunities" stood here. Eight are open. A number that is
+    // 150x the truth is the one thing this site cannot afford to print, and
+    // /about prints the real one two clicks away.
+    points: ["Free to apply, always", "Verified employers", "Flexible and remote work"],
     href: "https://app.womsakhi.com/app/work",
     art: "/art/scene-woman-climbing-steps.webp",
     accent: "#5b32a6",

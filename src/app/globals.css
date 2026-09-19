@@ -3,39 +3,41 @@
 /*
   WomSakhi — the website.
 
-  The palette is the product's, not a new one. A woman who reads the site and
-  then opens the app should not feel she has changed companies: `--brand` here
-  is `--ux-brand-600` there, and the pink is the same pink. Everything else is
-  built around them.
+  The palette is the owner's reference design, reproduced literally: berry
+  pills on a blush-cream ground, navy-black serif type, rose-pink leaves. The
+  hex values were sampled from the reference pixels, not picked by eye.
 */
 @theme {
-  --color-brand-50:  #f8f3fd;
-  --color-brand-100: #f0e5fe;
-  --color-brand-200: #e0cbfc;
-  --color-brand-300: #c9a8f7;
-  --color-brand-400: #a98bf5;
-  --color-brand-500: #8f6ae8;
-  --color-brand-600: #7648b3;
-  --color-brand-700: #5b32a6;
-  --color-brand-800: #4a2895;
-  --color-brand-900: #2c1a5c;
-  --color-brand-950: #1a0f38;
+  /* Berry, sampled from the owner's reference design (the "Get Started" and
+     "Join the Movement" pills are #901f4d; the ramp is built around it). */
+  --color-brand-50:  #fbf1f5;
+  --color-brand-100: #f7e1ea;
+  --color-brand-200: #efc3d4;
+  --color-brand-300: #e29ab6;
+  --color-brand-400: #cf6c93;
+  --color-brand-500: #b43f70;
+  --color-brand-600: #901f4d;
+  --color-brand-700: #7a1a42;
+  --color-brand-800: #641638;
+  --color-brand-900: #4b122b;
+  --color-brand-950: #2e0a1a;
 
-  --color-pink-brand: #e160a4;
-  --color-pink-deep:  #ba4484;
-  --color-gold:       #f5b544;
+  --color-pink-brand: #e089a8;
+  --color-pink-deep:  #c9577f;
+  --color-gold:       #e8903a;
 
-  /* Ink and ground. The neutrals carry a violet bias rather than being grey —
-     a pure grey beside this much purple reads as dirty. */
-  --color-ink:       #14102a;
-  --color-ink-2:     #3d3660;
-  --color-muted:     #6b6490;
-  --color-canvas:    #faf8ff;
+  /* Ink and ground: a navy-black for type, a warm blush cream underneath. */
+  --color-ink:       #15162b;
+  --color-ink-2:     #3d3b48;
+  --color-muted:     #6a6571;
+  --color-canvas:    #fbf7f6;
   --color-surface:   #ffffff;
-  --color-line:      #ece7f7;
+  --color-line:      #efe8e7;
 
   --font-display: var(--font-display), ui-serif, Georgia, serif;
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-accent: var(--font-accent), ui-serif, Georgia, serif;
+  --font-script: var(--font-script), cursive;
 
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
@@ -82,11 +84,9 @@ body {
 /*
   Focus that is actually visible — measured, not assumed.
 
-  This was `--color-brand-400` (#a98bf5) with a comment claiming it worked on
-  every ground. It does not: 2.59:1 on `canvas` and 2.73:1 on `surface`, where
-  WCAG 2.2 SC 1.4.11 requires 3:1 for a non-text indicator. `brand-500`
-  (#8f6ae8) is the first step on the ramp that clears it — 3.70:1 and 3.89:1.
-  A focus ring nobody can see is the same as no focus ring.
+  WCAG 2.2 SC 1.4.11 asks 3:1 for a non-text indicator. `brand-500` (#b43f70)
+  is about 5.6:1 on the cream canvas and 6:1 on white. A focus ring nobody can
+  see is the same as no focus ring.
 */
 :focus-visible {
   outline: 3px solid var(--color-brand-500);
