@@ -166,16 +166,20 @@
 .decorLeaves:after{left:35px;transform:rotate(18deg);background:linear-gradient(145deg,#f0b0c3,#c74270);opacity:.72}
 .missionArt>img:first-child{object-position:center 54%;filter:saturate(.9) contrast(1.02) brightness(1.03)}
 .decorLeaves{background:linear-gradient(145deg,#b3164d,#e8799a);border-radius:100% 0 100% 0}
-.missionArt>img:first-child{clip-path:path("M 150 0 C 65 0 8 48 2 130 L 0 338 C 0 399 31 425 92 425 C 205 425 326 410 438 383 C 501 368 530 337 530 278 L 530 150 C 530 59 460 0 362 0 Z") !important}
+.missionArt>img:first-child{clip-path:path("M 150 22 C 65 22 8 69 2 145 L 0 338 C 0 399 31 425 92 425 C 205 425 326 410 438 383 C 501 368 530 337 530 278 L 530 166 C 530 77 460 22 362 22 Z") !important}
 .decorLeaves{left:-12px;top:17px;width:190px;height:190px;background:url('/assets/mission-leaves.png') left top/contain no-repeat;border-radius:0;transform:none}
 .decorLeaves:before,.decorLeaves:after{display:none}
 .heroArt>.heroBackdrop{inset:4px 118px auto auto!important;width:315px!important;height:474px!important;object-position:center!important;clip-path:none!important;border-radius:158px 158px 0 0!important}
 .heroArt::after{display:block;right:-8px;bottom:0;width:205px;height:220px;border-radius:0;background:url('/assets/hero-mountain-bg.png') 78% 70%/cover no-repeat;clip-path:path("M 20 28 C 72 8 142 0 205 0 L 205 220 L 68 220 C 22 183 0 128 0 75 C 0 53 7 38 20 28 Z");opacity:.58}
 .videoModal{position:fixed;z-index:1000;inset:0;display:grid;place-items:center;padding:24px;background:rgb(25 7 18 / 78%);backdrop-filter:blur(12px)}
-.videoModal>div{position:relative;width:min(900px,92vw);border-radius:16px;background:#160b15;box-shadow:0 30px 90px #0008;overflow:hidden}
-.videoModal video{display:block;width:100%;max-height:82vh;background:#000}
+.videoModal>div{position:relative;width:min(620px,calc(100vw - 32px));border-radius:14px;background:#160b15;box-shadow:0 24px 70px #0008;overflow:hidden}
+.videoModal video{display:block;width:100%;aspect-ratio:16/9;max-height:65vh;object-fit:contain;background:#000}
 .videoClose{position:absolute;z-index:2;right:12px;top:12px;width:38px;height:38px;border:0;border-radius:50%;background:#fff;color:#541335;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 4px 18px #0005}
 .mission .play{cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}.mission .play:focus-visible{outline:3px solid #fff;outline-offset:3px}.mission .play:hover{transform:scale(1.05);box-shadow:0 10px 26px #5b153b45}
+@media(min-width:761px){.mission .play{top:190px}.mission .together{top:199px}.mission figure{bottom:6px}}
+.heroArt .l1,.heroArt .l2{display:none}
+.heroArt::before{content:"";display:block;position:absolute;z-index:1;left:3px;top:20px;width:205px;height:285px;background:url('/assets/hero-blush-leaves.png') center/contain no-repeat;pointer-events:none}
+.heroArt>.heroWoman{z-index:2}
 
 @media(max-width:760px){
   .heroArt .l1{left:-34px;top:76px;transform:rotate(-36deg) scale(.62)}
@@ -186,4 +190,5 @@
   .decorLeaves{left:-42px;top:42px;transform:rotate(-18deg) scale(.7)}
   .heroArt>.heroBackdrop{inset:0 70px auto auto!important;width:285px!important;height:390px!important;border-radius:145px 145px 0 0!important}
   .heroArt::after{right:-38px;bottom:0;width:150px;height:175px}
+  .heroArt::before{left:-18px;top:28px;width:150px;height:220px}
 }
