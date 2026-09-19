@@ -60,6 +60,18 @@
   backdrop-filter: blur(14px) saturate(1.12);
 }
 
+.heroArt::before {
+  content:"";
+  position:absolute;
+  z-index:2;
+  inset:0 auto 0 0;
+  width:110px;
+  background:linear-gradient(90deg,var(--cream),rgb(252 248 246 / 72%) 35%,transparent);
+  pointer-events:none;
+}
+.heroArt .leaf,.heroArt .script,.heroArt .steps{z-index:3}
+.heroArt>img,.missionArt>img:first-child{filter:saturate(.95) contrast(1.02)}
+
 .heroArt > img {
   border-radius: 0;
   -webkit-mask: none;
