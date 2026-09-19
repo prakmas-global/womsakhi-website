@@ -164,6 +164,9 @@
 .decorLeaves:before,.decorLeaves:after{content:"";position:absolute;bottom:0;width:54px;height:118px;border-radius:100% 0 100% 0;background:linear-gradient(145deg,#df668e,#a82054);opacity:.88;transform-origin:bottom center}
 .decorLeaves:before{left:7px;transform:rotate(-24deg)}
 .decorLeaves:after{left:35px;transform:rotate(18deg);background:linear-gradient(145deg,#f0b0c3,#c74270);opacity:.72}
+.missionArt>img:first-child{object-position:center 54%;filter:saturate(.9) contrast(1.02) brightness(1.03)}
+.decorLeaves{background:linear-gradient(145deg,#b3164d,#e8799a);border-radius:100% 0 100% 0}
+.missionArt>img:first-child{clip-path:path("M 150 0 C 65 0 8 48 2 130 L 0 338 C 0 399 31 425 92 425 C 205 425 326 410 438 383 C 501 368 530 337 530 278 L 530 150 C 530 59 460 0 362 0 Z") !important}
 
 @media(max-width:760px){
   .heroArt .l1{left:-34px;top:76px;transform:rotate(-36deg) scale(.62)}
