@@ -1,0 +1,257 @@
+/* ==========================================================================
+   WomSakhi design tokens
+
+   Every colour on the public site resolves through one of the tokens below,
+   so light and dark are two values of the same system rather than two
+   stylesheets. Dark mode keeps the brand's warm plum family: the page goes to
+   a deep aubergine rather than neutral grey, because the whole identity is
+   built on berry/blush and a cold grey would read as a different product.
+
+   Resolution order:
+     1. `data-theme` written to <html> by the inline script in layout.tsx
+     2. `prefers-color-scheme` for visitors who have never chosen
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* ---- brand ------------------------------------------------------------ */
+  --berry: #9b1d50;              /* berry used as text, icon glyph, rule      */
+  --berry-bg: #9b1d50;           /* berry used as a filled surface            */
+  --berry-bg-hover: #77163f;
+  --berry-deep: #77163f;
+  --berry-bright: #b12662;       /* hover/active text berry                   */
+  --berry-ink: #922452;          /* secondary berry label                     */
+  --focus: #c83f76;
+
+  /* ---- page and surfaces ------------------------------------------------ */
+  --page: #fcf8f6;
+  --surface: #ffffff;            /* cards, panels, popovers                   */
+  --surface-2: #fffaf8;          /* raised strip (stats rail)                 */
+  --surface-3: #fbf7f6;          /* tail of a card gradient                   */
+  --surface-4: #fffdfd;          /* form fields                               */
+  --plate: #f5e9e9;              /* plate behind an organic image cut         */
+  --plate-2: #efe6e2;
+  --sheen: rgb(255 255 255 / 60%);
+  --ghost-bg: rgb(255 255 255 / 60%);
+  --chip: #f8e3eb;               /* pink circle behind an icon                */
+  --chip-ink: #952450;
+  --chip-violet: #f3e5fa;
+  --chip-blue: #e9efff;
+  --chip-blue-ink: #2861b1;
+  --pill-soft: #f8dce7;
+
+  /* ---- lines ------------------------------------------------------------ */
+  --line: #eadfe1;
+  --line-strong: #e5d5db;
+  --line-field: #dfd1d6;
+  --rail: #dfbcc9;
+  --hover-line: #d8a8ba;
+
+  /* ---- text ------------------------------------------------------------- */
+  --ink: #141427;
+  --ink-2: #281521;
+  --body: #514d55;
+  --muted: #6d6268;
+  --faint: #7e6975;
+  --eyebrow: #7d6771;
+  --eyebrow-berry: #9a5c75;
+  --watermark: #cdb6bd;
+  --success: #16734a;
+
+  /* ---- deep berry panels ------------------------------------------------
+     These sections are already dark in light mode. In dark mode they deepen
+     a little so they still separate from the page behind them.             */
+  --deep: #52162f;
+  --deep-2: #4d142f;
+  --deep-3: #81234c;
+  --deep-4: #43142f;
+  --deep-grad-a: #a92c62;
+  --deep-grad-b: #762249;
+  --on-deep: #ffffff;
+  --on-deep-body: #ead9e0;
+  --on-deep-accent: #f0b3c9;
+  --on-deep-line: rgb(255 255 255 / 28%);
+  --on-deep-hairline: rgb(255 255 255 / 14%);
+  --pill-on-deep: #ffffff;
+  --pill-on-deep-ink: #5f1839;
+  --pill-on-deep-hover: #f8dce7;
+
+  /* ---- header and overlays ---------------------------------------------- */
+  --header-bg: rgb(252 248 246 / 92%);
+  --header-line: rgb(140 55 88 / 7%);
+  --script-halo: #ffffff;
+  --scrim: rgb(255 249 249 / 82%);
+  --modal-veil: rgb(25 7 18 / 78%);
+
+  /* ---- elevation --------------------------------------------------------
+     Three tiers instead of the fifteen one-off alphas this file grew.      */
+  --sh-1: rgb(104 34 64 / 7%);
+  --sh-2: rgb(104 34 64 / 12%);
+  --sh-3: rgb(104 34 64 / 22%);
+  --sh-4: rgb(74 18 45 / 34%);
+  --sh-berry: rgb(141 40 81 / 19%);
+
+  /* ---- media ------------------------------------------------------------ */
+  --photo-filter: none;
+  --logo-blend: normal;
+}
+
+/* Visitors who have never chosen follow the OS. The `:root:not([data-theme="light"])` guard
+   means an explicit light choice still wins over a dark OS. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --berry: #f08cb2;
+    --berry-bg: #b5285f;
+    --berry-bg-hover: #cc3a72;
+    --berry-deep: #f6a8c5;
+    --berry-bright: #ffa9c7;
+    --berry-ink: #ef93b4;
+    --focus: #ff9dc0;
+
+    --page: #140c12;
+    --surface: #221720;
+    --surface-2: #261a24;
+    --surface-3: #1e141c;
+    --surface-4: #2a1d27;
+    --plate: #2b1d26;
+    --plate-2: #2b1f27;
+    --sheen: rgb(255 255 255 / 5%);
+    --ghost-bg: rgb(255 255 255 / 7%);
+    --chip: #3a2431;
+    --chip-ink: #f6a1c0;
+    --chip-violet: #322a44;
+    --chip-blue: #232f49;
+    --chip-blue-ink: #9dbdf2;
+    --pill-soft: #4a2135;
+
+    --line: #3a2a34;
+    --line-strong: #453240;
+    --line-field: #4a3541;
+    --rail: #5c3849;
+    --hover-line: #7d4b62;
+
+    --ink: #f7ecf1;
+    --ink-2: #f3e4ec;
+    --body: #cdbcc6;
+    --muted: #b7a4b0;
+    --faint: #a4919d;
+    --eyebrow: #c1a3b1;
+    --eyebrow-berry: #d99ab5;
+    --watermark: #7d5c6d;
+    --success: #5fd3a0;
+
+    --deep: #3d1024;
+    --deep-2: #390f22;
+    --deep-3: #691b3d;
+    --deep-4: #2e0d1f;
+    --deep-grad-a: #8e2450;
+    --deep-grad-b: #5a1738;
+    --on-deep: #ffffff;
+    --on-deep-body: #ecdbe2;
+    --on-deep-accent: #f4b6ce;
+    --on-deep-line: rgb(255 255 255 / 24%);
+    --on-deep-hairline: rgb(255 255 255 / 13%);
+    --pill-on-deep: #fdf3f7;
+    --pill-on-deep-ink: #5f1839;
+    --pill-on-deep-hover: #ffffff;
+
+    --header-bg: rgb(20 12 18 / 88%);
+    --header-line: rgb(255 255 255 / 8%);
+    --script-halo: rgb(0 0 0 / 55%);
+    --scrim: rgb(34 23 32 / 84%);
+    --modal-veil: rgb(8 3 6 / 84%);
+
+    --sh-1: rgb(0 0 0 / 30%);
+    --sh-2: rgb(0 0 0 / 42%);
+    --sh-3: rgb(0 0 0 / 55%);
+    --sh-4: rgb(0 0 0 / 68%);
+    --sh-berry: rgb(0 0 0 / 50%);
+
+    --photo-filter: brightness(0.86) saturate(0.94) contrast(1.02);
+    --logo-blend: normal;
+  }
+}
+
+/* An explicit choice. Duplicated rather than nested so it wins over the media
+   query above regardless of source order.
+
+   This is an attribute rather than a class on purpose: `.light` is already a
+   button class in globals.css (`.light { display: inline-flex; height: 38px;
+   border-radius: 999px }`), so a `light` class on <html> turned the whole
+   document into a 38px pill. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --berry: #f08cb2;
+  --berry-bg: #b5285f;
+  --berry-bg-hover: #cc3a72;
+  --berry-deep: #f6a8c5;
+  --berry-bright: #ffa9c7;
+  --berry-ink: #ef93b4;
+  --focus: #ff9dc0;
+
+  --page: #140c12;
+  --surface: #221720;
+  --surface-2: #261a24;
+  --surface-3: #1e141c;
+  --surface-4: #2a1d27;
+  --plate: #2b1d26;
+  --plate-2: #2b1f27;
+  --sheen: rgb(255 255 255 / 5%);
+  --ghost-bg: rgb(255 255 255 / 7%);
+  --chip: #3a2431;
+  --chip-ink: #f6a1c0;
+  --chip-violet: #322a44;
+  --chip-blue: #232f49;
+  --chip-blue-ink: #9dbdf2;
+  --pill-soft: #4a2135;
+
+  --line: #3a2a34;
+  --line-strong: #453240;
+  --line-field: #4a3541;
+  --rail: #5c3849;
+  --hover-line: #7d4b62;
+
+  --ink: #f7ecf1;
+  --ink-2: #f3e4ec;
+  --body: #cdbcc6;
+  --muted: #b7a4b0;
+  --faint: #a4919d;
+  --eyebrow: #c1a3b1;
+  --eyebrow-berry: #d99ab5;
+  --watermark: #7d5c6d;
+  --success: #5fd3a0;
+
+  --deep: #3d1024;
+  --deep-2: #390f22;
+  --deep-3: #691b3d;
+  --deep-4: #2e0d1f;
+  --deep-grad-a: #8e2450;
+  --deep-grad-b: #5a1738;
+  --on-deep: #ffffff;
+  --on-deep-body: #ecdbe2;
+  --on-deep-accent: #f4b6ce;
+  --on-deep-line: rgb(255 255 255 / 24%);
+  --on-deep-hairline: rgb(255 255 255 / 13%);
+  --pill-on-deep: #fdf3f7;
+  --pill-on-deep-ink: #5f1839;
+  --pill-on-deep-hover: #ffffff;
+
+  --header-bg: rgb(20 12 18 / 88%);
+  --header-line: rgb(255 255 255 / 8%);
+  --script-halo: rgb(0 0 0 / 55%);
+  --scrim: rgb(34 23 32 / 84%);
+  --modal-veil: rgb(8 3 6 / 84%);
+
+  --sh-1: rgb(0 0 0 / 30%);
+  --sh-2: rgb(0 0 0 / 42%);
+  --sh-3: rgb(0 0 0 / 55%);
+  --sh-4: rgb(0 0 0 / 68%);
+  --sh-berry: rgb(0 0 0 / 50%);
+
+  --photo-filter: brightness(0.86) saturate(0.94) contrast(1.02);
+  --logo-blend: normal;
+}
