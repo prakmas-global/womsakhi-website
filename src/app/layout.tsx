@@ -1,85 +1,73 @@
 import type { Metadata, Viewport } from "next";
-import { Frank_Ruhl_Libre, Inter, PT_Serif, Vujahday_Script } from "next/font/google";
+import { Caveat, DM_Sans, Playfair_Display } from "next/font/google";
+import { BrandSplash } from "@/components/BrandSplash";
 import "./globals.css";
-import "./site.css";
-import { SITE } from "@/lib/site";
-import { SmoothScroll } from "@/components/SmoothScroll";
 
-/*
-  Four faces, each matched to the owner's reference design by rendering the
-  candidates beside it and comparing glyph shapes, not by name.
+const sans = DM_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const serif = Playfair_Display({ subsets: ["latin"], variable: "--font-serif", display: "swap" });
+const script = Caveat({ subsets: ["latin"], variable: "--font-script", display: "swap" });
 
-  Frank Ruhl Libre is the display serif (headlines, numbers, the wordmark): of
-  forty Google serifs it overlapped the reference headline most closely.
-  It has no italic, so the one italic word in the hero ("Stronger") is set in
-  PT Serif Italic, whose wide round italic is the nearest match to the
-  reference's. Vujahday Script is the handwriting ("Learn / Grow / Achieve /
-  Together"), and Inter carries everything that has to be read.
-*/
-const display = Frank_Ruhl_Libre({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const accent = PT_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: "italic",
-  variable: "--font-accent",
-  display: "swap",
-});
-
-const script = Vujahday_Script({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-script",
-  display: "swap",
-});
-
-const sans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://www.womsakhi.com";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE.url),
+  metadataBase: new URL(SITE),
   title: {
-    default: `${SITE.name} — a livelihood platform built for women`,
-    template: `%s · ${SITE.name}`,
+    default: "WomSakhi | Stronger Women. Brighter Tomorrows.",
+    template: "%s | WomSakhi",
   },
-  description: SITE.description,
+  description:
+    "WomSakhi brings practical learning, trusted work opportunities, earning tools, wellbeing support and women-led community into one place built for real life.",
+  applicationName: "WomSakhi",
+  keywords: ["women", "learning", "careers", "income", "wellbeing", "community", "India"],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: `${SITE.name} — a livelihood platform built for women`,
-    description: SITE.description,
-    url: SITE.url,
-    siteName: SITE.name,
-    locale: "en_IN",
     type: "website",
+    siteName: "WomSakhi",
+    url: SITE,
+    title: "WomSakhi | Stronger Women. Brighter Tomorrows.",
+    description:
+      "Learn, work, earn and belong. One practical place for the many parts of a woman's life.",
+    images: [{ url: "/assets/womsakhi-lockup.png", width: 1254, height: 1254, alt: "WomSakhi" }],
   },
-  twitter: { card: "summary_large_image", title: SITE.name, description: SITE.description },
+  twitter: {
+    card: "summary_large_image",
+    title: "WomSakhi | Stronger Women. Brighter Tomorrows.",
+    description:
+      "Learn, work, earn and belong. One practical place for the many parts of a woman's life.",
+    images: ["/assets/womsakhi-lockup.png"],
+  },
   robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#901f4d",
-  width: "device-width",
-  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fcf8f6" },
+    { media: "(prefers-color-scheme: dark)", color: "#140c12" },
+  ],
+  colorScheme: "light dark",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+/**
+ * Runs before first paint, so a visitor who chose a theme never sees the other
+ * one flash and a returning visitor never sees the splash at all. Anyone who
+ * has not chosen a theme falls through to the `prefers-color-scheme` block in
+ * theme.css.
+ */
+const bootScript = `(function(){var r=document.documentElement;
+try{var t=localStorage.getItem("womsakhi-theme");if(t==="dark"||t==="light"){r.setAttribute("data-theme",t)}}catch(e){}
+try{var reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(reduced||sessionStorage.getItem("womsakhi-splash-seen")==="1"){r.setAttribute("data-splash","skip")}
+else{sessionStorage.setItem("womsakhi-splash-seen","1")}}catch(e){r.setAttribute("data-splash","skip")}})();`;
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${display.variable} ${accent.variable} ${script.variable} ${sans.variable}`}>
-      <body>
-        {/* Before anything else in the DOM, so a keyboard reaches it first. */}
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-brand-700 focus:px-5 focus:py-3 focus:text-white"
-        >
-          Skip to content
-        </a>
-        <SmoothScroll />
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: bootScript }} />
+      </head>
+      <body className={`${sans.variable} ${serif.variable} ${script.variable}`}>
+        <a className="skipLink" href="#main">Skip to main content</a>
+        <BrandSplash />
         {children}
       </body>
     </html>

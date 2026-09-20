@@ -1,0 +1,21 @@
+# Netlify picks the Next.js runtime up automatically — the adapter is not
+# pinned here on purpose, because Netlify maintains it against every Next
+# version and pinning it is what goes stale.
+#
+# Node is pinned in .node-version (which outranks this file and the UI).
+# Netlify otherwise pins a site to whatever its build image defaulted to on
+# the day the site was created, and Next 16 needs Node 20.9+.
+
+[build]
+  command = "npm run build"
+
+# Every route here is prerendered and there is no middleware, no server
+# actions and no API routes, so these apply to the whole site.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    Cross-Origin-Opener-Policy = "same-origin"
